@@ -2,7 +2,8 @@
 
 ## How do I complete this project?
 
-1. If you need a refresher on JavaScript syntax, go to the [Javascript Basics course](https://www.udacity.com/course/viewer#!/c-ud804-nd); if you would like to understand how this project is manipulating and traversing the DOM, check out [Intro to jQuery](https://www.udacity.com/course/ud245-nd).
+1. If you need a refresher on JavaScript syntax, go to the [Javascript Basics course](https://www.udacity.com/course/viewer#!/c-ud804-nd); 
+if you would like to understand how this project is manipulating and traversing the DOM, check out [Intro to jQuery](https://www.udacity.com/course/ud245-nd).
 2. Go through the videos and assignments in this course to learn the JavaScript necessary to build your resume.
 3. Review your work against the Project Rubric (on the next page).
 4. When you are satisfied with your project, submit it according to the Submission Instructions on the next page.
@@ -26,16 +27,21 @@ The GitHub readme file.
 ### js/helper.js
 Within helper.js, you’ll find a large collection of strings containing snippets of HTML. Within many snippets, you’ll find placeholder data in the form of `%data%` or `%contact%`.
 
-Each string has a title that describes how it should be used. For instance, `HTMLworkStart` should be the first `<div>` in the Work section of the resume. `HTMLschoolLocation` contains a `%data%` placeholder which should be replaced with the location of one of your schools.
+Each string has a title that describes how it should be used. For instance, `HTMLworkStart` should be the first `<div>` in the Work section of 
+the resume. `HTMLschoolLocation` contains a `%data%` placeholder which should be replaced with the location of one of your schools.
 
 ### Your process:
 The resume has four distinct sections: work, education, projects and a header with biographical information. You’ll need to:
 
 1. Build four JSONs, each one representing a different resume section.
  * `work` contains an array of `jobs`. Each `job` object in `jobs` should contain an `employer`, `title`, `location`, `dates worked` and `description`.
- * `projects` contains an array of `projects`. Each `project` object in `projects` should contain a `title`, `dates worked`, `description`, and an `images` array with URL strings for project images.
- * `bio` contains a `name`, `role`, `welcomeMessage`, `contacts` object and `skills` array. The `contacts` object should contain (but doesn't have to) a `mobile number`, `email` address, `github` username, `twitter` handle and `location`.
- * `education` contains an array of `schools`. Each `school` object in `schools` contains a `name`, `location`, `degree`, `majors` array, `dates attended` and a `url` for the school's website. `education` also contains an `onlineCourses` array. Each `onlineCourse` object in `onlineCourses` should contain a `title`, `school`, `dates attended` and a `url` for the course.
+ * `projects` contains an array of `projects`. Each `project` object in `projects` should contain a `title`, `dates worked`, `description`, and an `images` 
+ array with URL strings for project images.
+ * `bio` contains a `name`, `role`, `welcomeMessage`, `contacts` object and `skills` array. The `contacts` object should contain (but doesn't have to) 
+ a `mobile number`, `email` address, `github` username, `twitter` handle and `location`.
+ * `education` contains an array of `schools`. Each `school` object in `schools` contains a `name`, `location`, `degree`, `majors` array, `dates attended` 
+ and a `url` for the school's website. `education` also contains an `onlineCourses` array. Each `onlineCourse` object in `onlineCourses` should contain 
+ a `title`, `school`, `dates attended` and a `url` for the course.
 2. Iterate through each JSON and append its information to index.html in the correct section.
  * First off, you’ll be using jQuery’s `selector.append()` and `selector.prepend()` functions to modify index.html. `selector.append()` makes an element appear at the end of a selected section. `selector.prepend()` makes an element appear at the beginning of a selected section.
    * Pay close attention to the ids of the `<div>`s in index.html and the HTML snippets in helper.js. They’ll be very useful as jQuery selectors for `selector.append()` and `selector.prepend()`
