@@ -180,8 +180,10 @@ span {
 	margin-top: 0px;
 }
 
-.text-link {
-
+.moreless {
+	padding: 0px;
+	color: #1199C3;
+	cursor: pointer;
 }
 
 @media only screen and (max-width: 1024px) {

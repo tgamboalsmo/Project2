@@ -8,9 +8,9 @@ var myBio = {
 		"home" : "999-555-1201",
 		"mobile" : "999-555-1200",
 		"email" : "fake-email@fake-mailservice.com",
-		"twitter" : "@tim",
-		"github" : "tim-githubhandle",
-		"blog" : "blog-url",
+		"twitter" : "@faketwitter",
+		"github" : "fakegithubhandle",
+		"blog" : "fakeblog",
 		"location" : "Kansas City, MO"
 	},	
 	"biopic" : "images/fry.jpg",	
@@ -45,7 +45,10 @@ var myWork = {
 		"title": "Senior - IT Service Management / Web Developer",
 		"dates": "Jan 2015 - Present",
 		"location": "Kansas City, MO",
-		"description": "Current working as a web developer within the service management organization support internal tools ans applications.",
+		"description": "Currently working as a web developer within the service management organization providing " +
+		               "support for internal tools primarily for Incident Management, Problem Management, " +
+		               "Change Management, Availability Management and Service Desk groups. In addition to that, " +
+		               "I support various other tools including reporting/metrics applications.",
 		"url": "http://www.att.com/"
 	},
 	{
@@ -53,7 +56,9 @@ var myWork = {
 		"title": "Senior - IT Service Management / Incident Manager",
 		"dates": "Jan 2011 - Dec 2014",
 		"location": "Kansas City, MO",
-		"description": "I worked as tier 2 incident manager running primarily high visibility mission critical outages enterprise and across all platforms.",
+		"description": "I worked as tier 2 incident manager facilitating high visibility mission critical application " +
+					   "incidents across various product lines and platforms. My main goal was to reduce Mean Time To " +
+					   "Restoral for incidents, perform post incident reviews to address gaps and prevent reoccurrences.",
 		"url": "http://www.att.com/"
 	}, 
 	{
@@ -61,7 +66,9 @@ var myWork = {
 		"title": "Senior Implementation Manager / Outage Manager",
 		"dates": "Sept 2006 - Jan 2011",
 		"location": "Kansas City, MO",
-		"description": "I worked as a tier 1 outage manager running outages for non-mission critical outage events enterprise wide and across all platforms.",
+		"description": "I worked as a tier 1 outage manager running outages for non-mission critical outage incidents " +
+					   "enterprise wide and across all platforms. These are generally applications that do not significant " +
+					   "impact to the business. My primary goal was to lead in application restoral as quickly as possible.",
 		"url": "http://www.att.com/"
 	},
 	{
@@ -69,7 +76,9 @@ var myWork = {
 		"title": "Senior Implementation Manager  / Mainframe Operations",
 		"dates": "Sept 1999 - Sept 2006",
 		"location": "St. Louis, MO",
-		"description": "I provided tier 1 system support for 50+ mainframe systems enterprise wide.",
+		"description": "I provided tier 1 system support for 50+ mainframe systems enterprise wide. This involved technical " +
+					   "troubleshooting in response to automated alarms or user reports and working with next level " +
+					   " support teams with system maintenance.",
 		"url": "http://www.att.com/"
 	}]
 }
@@ -94,7 +103,7 @@ var myProjects = {
 }
 
 
-/*** Functions Definitions *************************************************************/
+/*** Function Definitions *************************************************************/
 // Header Info
 myBio.display = function() {
 	var formattedName = HTMLheaderName.replace("%data%", myBio.name);
@@ -110,7 +119,7 @@ myBio.display = function() {
 		var formattedSkills = HTMLskills.replace("%data%", myBio.skills[n]);
 		$("#skills").append(formattedSkills);
 	};
-};
+}
 
 //Contacts
 myBio.contacts.display = function() {
@@ -124,14 +133,18 @@ myBio.contacts.display = function() {
 	$("#topContacts").append(formattedContact);
 	$("#topContacts").append(formattedMobile)
 	$("#topContacts").append(formattedEmail);
-	//$("#topContacts").append(formattedTwitter);
+	$("#topContacts").append(formattedTwitter);
+	$("#topContacts").append(formattedGithub);
+	$("#topContacts").append(formattedBlog);
 	$("#topContacts").append(formattedLocation);
 	$("#footerContacts").append(formattedContact);
 	$("#footerContacts").append(formattedMobile)
 	$("#footerContacts").append(formattedEmail);
-	//$("#footerContacts").append(formattedTwitter);
+	$("#footerContacts").append(formattedTwitter);
+	$("#footerContacts").append(formattedGithub);
+	$("#footerContacts").append(formattedBlog);
 	$("#footerContacts").append(formattedLocation);
-};
+}
 
 // Work Experience
 myWork.display = function() {
@@ -148,7 +161,7 @@ myWork.display = function() {
 		$(".work-entry:last").append(formattedWorklocation);
 		$(".work-entry:last").append(formatedDescription);	
 	};
-};
+}
 
 //School
 myEducation.schools.display = function() {	
@@ -165,7 +178,7 @@ myEducation.schools.display = function() {
 		$(".education-entry:last").append(formattedschoolLocation);
 		$(".education-entry:last").append(formattedschoolMajor);
 	};	
-};
+}
 
 myEducation.online.display = function() {
 	$("#education").append(HTMLonlineClasses);
@@ -181,7 +194,7 @@ myEducation.online.display = function() {
 		$(".education-entry:last").append(formattedDates);
 		$(".education-entry:last").append(formattedOnlineURL);
 	};
-};
+}
 
 //Projects
 myProjects.display = function() {
@@ -197,21 +210,51 @@ myProjects.display = function() {
 		$(".project-entry:last").append(formattedProjectDescription);
 		$(".project-entry:last").append(formattedProjectImage);
 	};
-};
+}
 
 //Map
-var myMap = {};
-myMap.display = function () {
+function displayMap() {
 	$("#mapDiv").append(googleMap);
 };
 
+//This function invokes the entire read less/more functionality to the resume
+function descriptionMoreLess() {
+	var desc = $(".work-entry").find("p");
+	var n = 0;
+	desc.each(function(n) {
+		var oldHTML;
+		var readLess = '<span id="workdesc' + n + '"' + 'class="moreless" onclick="descriptionLess(' + n  + ')"> Read less...</span>';
+		oldHTML = $(this).html();
+		$(this).html(oldHTML + readLess);
+		n++;
+	});
+}
+
+//This function "minimizes" the amount of description text
+function descriptionLess(descID) {
+	var id = "workdesc" + descID;
+	var parentElement = $('#' + id).parent();
+	var lessText = "<br>" + parentElement.text().slice(0,55) + ".....";
+	var moreText = '<span id="' + id + '"' + 'class="moreless" onclick="descriptionMore(' + descID + ')">Read more</span>';
+	parentElement.html(lessText + moreText);
+}
+
+//This function returns all of the description text back to the resume
+function descriptionMore(descID) {
+	var id = "workdesc" + descID;
+	var parentElement = $('#' + id).parent();
+	var moreText = "<br>" + myWork.jobs[descID].description;
+	var lessText = '<span id="' + id + '"' + 'class="moreless" onclick="descriptionLess(' + descID + ')"> Read less...</span>';
+	parentElement.html(moreText + lessText);
+}
 
 /*** Called Functions ******************************************************************/
 myProjects.display();
 myBio.display();
 myWork.display();
 myEducation.schools.display();
-myMap.display();
+displayMap();
 myEducation.online.display();
 myBio.contacts.display();
+descriptionMoreLess();
 
